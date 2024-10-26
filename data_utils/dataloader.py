@@ -1,6 +1,5 @@
 import json
 from PIL import Image
-import numpy as np
 from torch.utils.data import Dataset
 import os
 
@@ -17,11 +16,11 @@ class Sarcasm(Dataset):
             data_json = json.load(file)
         for i_th, (idx, value) in enumerate(data_json.items()):
             image_path = os.path.join(self.file_image, value['image'])
-            img = Image.open(image_path)
+            img = Image.open(image_path).convert("RGB")
             
             self.__data[i_th] = {
                 'id': idx,
-                'image': np.asarray(img),
+                'image': img,
                 'caption': value['caption'],
                 'label': value['label']
             }
