@@ -1,5 +1,5 @@
 from torch.utils.data import DataLoader
-from dataloader import Sarcasm
+from data_utils.dataloader import Sarcasm
 import torch
 
 def collate_fn(batch):
