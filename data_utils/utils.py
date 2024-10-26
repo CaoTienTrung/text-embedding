@@ -11,7 +11,7 @@ def collate_fn(batch):
     return ids, images, captions, labels
 
 if __name__ == '__main__':
-    dataset = Sarcasm('vimmsd-warmup.json')
+    dataset = Sarcasm('.\\annotations\\vimmsd-warmup.json')
     dataloader = DataLoader(
         dataset, 
         batch_size=4, 
