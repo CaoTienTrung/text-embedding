@@ -2,20 +2,21 @@ import json
 from PIL import Image
 import numpy as np
 from torch.utils.data import Dataset
+import os
 
 class Sarcasm(Dataset):
-    def __init__(self, file_json):
+    def __init__(self, annotation = 'annotations', file_annotation = 'vimmsd_train.json', file_image = 'train-images'):
         super().__init__()
-        
-        with open(file_json, 'r', encoding = 'utf-8') as file:
-            data_json = json.load(file)
-        
         self.__data = {}
         
-        folder_images = 'C:\\Users\\admin\\Desktop\\DSC_B\\warmup-images'
+        # Path of folder images and file annotations
+        self.file_json = os.path.join('.', annotation, file_annotation)
+        self.file_image = os.path.join('.', file_image)
         
+        with open(self.file_json, 'r', encoding = 'utf-8') as file:
+            data_json = json.load(file)
         for i_th, (idx, value) in enumerate(data_json.items()):
-            image_path = folder_images + '\\' + value['image']
+            image_path = os.path.join(self.file_image, value['image'])
             img = Image.open(image_path)
             
             self.__data[i_th] = {
