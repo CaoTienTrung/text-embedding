@@ -1,5 +1,3 @@
-from torch.utils.data import DataLoader
-from data_utils.dataloader import Sarcasm
 import torch
 
 def collate_fn(batch):
@@ -9,12 +7,3 @@ def collate_fn(batch):
     labels = [item['label'] for item in batch]
     
     return ids, images, captions, labels
-
-if __name__ == '__main__':
-    dataset = Sarcasm('.\\annotations\\vimmsd-warmup.json')
-    dataloader = DataLoader(
-        dataset, 
-        batch_size=4, 
-        num_workers=2, 
-        collate_fn=collate_fn
-    )
