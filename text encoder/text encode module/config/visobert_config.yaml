@@ -1,0 +1,14 @@
+tokenizer:
+  padding: max_length
+  max_length: 514
+  truncation: True
+  return_token_type_ids: True
+  return_attention_mask: True
+
+text_embedding:
+  type: pretrained 
+  text_encoder: xlm-roberta-base
+  freeze: True
+  d_features: 768
+  d_model: 768
+  dropout: 0.1
